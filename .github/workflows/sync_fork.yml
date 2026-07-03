@@ -5,8 +5,8 @@ permissions:
 
 on:
     schedule:
-        - cron: "0 0 * * *"  # 每天午夜执行
-    workflow_dispatch:  # 允许手动触发
+        - cron: '0 0 * * *'  # daily
+    workflow_dispatch:
 
 jobs:
     sync_with_upstream:
@@ -18,10 +18,10 @@ jobs:
             - name: Checkout target repo
               uses: actions/checkout@v4
               with:
-                token: ${{ secrets.GITHUB_TOKEN }}
+                persist-credentials: false
 
             - name: Sync Upstream
-              uses: aormsby/Fork-Sync-With-Upstream-action@v3.4
+              uses: aormsby/Fork-Sync-With-Upstream-action@v3.4.3
               with:
                   target_repo_token: ${{ secrets.GITHUB_TOKEN }}
                   upstream_sync_repo: huangxd-/danmu_api
@@ -31,14 +31,10 @@ jobs:
 
             - name: Check for new commits
               if: success()
-              run: echo "Sync completed successfully"
+              run: echo Sync completed successfully
 
             - name: Check for Failure
               if: failure()
               run: |
-                  echo "[Error] Sync failed. This might be due to:"
-                  echo "1. Changes in the upstream workflow file"
-                  echo "2. Merge conflicts that need manual resolution"
-                  echo "3. Network issues"
-                  echo "Please check the logs and consider manual sync if needed."
+                  echo [Error] Sync failed
                   exit 1
