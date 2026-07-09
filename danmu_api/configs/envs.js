@@ -148,7 +148,7 @@ export class Envs {
    * @returns {Array} 源排序数组
    */
   static resolveSourceOrder() {
-    let sourceOrder = this.get('SOURCE_ORDER', 'douban,360,renren,hanjutv', 'string');
+    let sourceOrder = this.get('SOURCE_ORDER', 'douban,bilibili,360,tencent,youku,iqiyi,imgo,migu,renren,hanjutv', 'string');
 
     const orderArr = sourceOrder
       .split(',')
