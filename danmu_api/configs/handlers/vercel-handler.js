@@ -54,7 +54,6 @@ export class VercelHandler extends BaseHandler {
         headers: { Authorization: `Bearer ${globals.deployPlatformToken}`, 'Content-Type': 'application/json' },
       };
       const data = {
-        key: key,
         value: value.toString(),
         target: envItem.target,
         type: envItem.type,
