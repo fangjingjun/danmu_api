@@ -1,5 +1,6 @@
 {
   "version": 2,
+  "buildCommand": "sed -i '/key: key,/d' danmu_api/configs/handlers/vercel-handler.js",
   "builds": [
     {
       "src": "danmu_api/worker.js",
