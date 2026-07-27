@@ -35,7 +35,7 @@ export class VercelHandler extends BaseHandler {
         return null;
       }
     } catch (error) {
-      log("error", '[system] [Server] ✗ Failed to _getEevId:', error.message);
+      log("error", '[system] [server] ✗ Failed to _getEevId:', error.message);
     }
   }
 
@@ -43,7 +43,7 @@ export class VercelHandler extends BaseHandler {
     // 首先获取云端环境变量
     const envItem = await this._getEevId(key);
     if (!envItem) {
-      log("error", '[system] [Server] Error setEnv: 没有找到对应的环境变量！');
+      log("error", '[system] [server] Error setEnv: 没有找到对应的环境变量！');
       return;
     }
 
@@ -62,7 +62,7 @@ export class VercelHandler extends BaseHandler {
 
       return this.updateLocalEnv(key, value);
     } catch (error) {
-      log("error", '[system] [Server] ✗ Failed to set environment variable:', error.message);
+      log("error", '[system] [server] ✗ Failed to set environment variable:', error.message);
     }
   }
 
@@ -87,7 +87,7 @@ export class VercelHandler extends BaseHandler {
 
       return this.updateLocalEnv(key, value);
     } catch (error) {
-      log("error", '[system] [Server] ✗ Failed to add environment variable:', error.message);
+      log("error", '[system] [server] ✗ Failed to add environment variable:', error.message);
     }
   }
 
@@ -95,7 +95,7 @@ export class VercelHandler extends BaseHandler {
     // 首先获取云端环境变量
     const envItem = await this._getEevId(key);
     if (!envItem) {
-      log("error", '[system] [Server] Error setEnv: 没有找到对应的环境变量！');
+      log("error", '[system] [server] Error setEnv: 没有找到对应的环境变量！');
       return;
     }
 
@@ -109,7 +109,7 @@ export class VercelHandler extends BaseHandler {
 
       return this.delLocalEnv(key);
     } catch (error) {
-      log("error", '[system] [Server] ✗ Failed to add environment variable:', error.message);
+      log("error", '[system] [server] ✗ Failed to add environment variable:', error.message);
     }
   }
 
@@ -118,7 +118,7 @@ export class VercelHandler extends BaseHandler {
       await this._getAllEnvs(projectId, token);
       return true;
     } catch (error) {
-      log("error", '[system] [Server] checkParams failed! projectId or token is not valid:', error.message);
+      log("error", '[system] [server] checkParams failed! projectId or token is not valid:', error.message);
       return false;
     }
   }
@@ -136,7 +136,7 @@ export class VercelHandler extends BaseHandler {
       if (resList?.data && resList?.data?.deployments && resList?.data?.deployments.length > 0) {
         lastestDeployId = resList.data.deployments[0].uid;
       } else {
-        log("error", '[system] [Server] ✗ Failed to deploy:', JSON.stringify(resList?.data));
+        log("error", '[system] [server] ✗ Failed to deploy:', JSON.stringify(resList?.data));
         return false;
       }
 
@@ -154,12 +154,12 @@ export class VercelHandler extends BaseHandler {
       const res = await httpPost(url, JSON.stringify(data), options);
 
       if (!res?.data?.id) {
-        log("error", '[system] [Server] ✗ Failed to deploy:', JSON.stringify(res?.data));
+        log("error", '[system] [server] ✗ Failed to deploy:', JSON.stringify(res?.data));
         return false;
       }
       return true;
     } catch (error) {
-      log("error", '[system] [Server] ✗ Failed to deploy:', error.message);
+      log("error", '[system] [server] ✗ Failed to deploy:', error.message);
       return false;
     }
   }
